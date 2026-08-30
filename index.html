@@ -18,14 +18,17 @@
 
 <style>
 :root{
-  --paper:#F2F2ED;
-  --paper-2:#E7E7E0;
-  --ink:#15171B;
-  --ink-2:#5A5E66;
-  --rule:#C9C9C1;
-  --rule-faint:#DEDED7;
-  --blue:#1330C4;
-  --blue-wash:#E2E5F7;
+  /* Achromatic. No hue anywhere: the accent IS the ink, so hierarchy comes
+     from weight, scale and rule position rather than colour. Anything that
+     needs to signal state must therefore change shape, not just tone. */
+  --paper:#FBFBF9;
+  --paper-2:#EFEFEB;
+  --ink:#0C0D0F;
+  --ink-2:#6B6B67;
+  --rule:#CFCFC9;
+  --rule-faint:#E4E4DE;
+  --accent:#0C0D0F;
+  --wash:#E6E6E1;
 
   --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -37,13 +40,6 @@
   --pad:clamp(20px,4vw,64px);
   --hair:1px;
 }
-
-/* ================= PALETTE STUDY ================= */
-:root[data-palette="blueprint"]{--paper:#F2F2ED;--paper-2:#E7E7E0;--ink:#15171B;--ink-2:#5A5E66;--rule:#C9C9C1;--rule-faint:#DEDED7;--blue:#1330C4;--blue-wash:#E2E5F7;}
-:root[data-palette="achromatic"]{--paper:#FBFBF9;--paper-2:#EFEFEB;--ink:#0C0D0F;--ink-2:#6B6B67;--rule:#CFCFC9;--rule-faint:#E4E4DE;--blue:#0C0D0F;--blue-wash:#E6E6E1;}
-:root[data-palette="signal"]{--paper:#EDEDE8;--paper-2:#E1E1DA;--ink:#17171A;--ink-2:#5C5C5E;--rule:#C6C6BF;--rule-faint:#DBDBD4;--blue:#C4261B;--blue-wash:#F6E1DE;}
-:root[data-palette="sulfur"]{--paper:#E9E9E4;--paper-2:#DEDED8;--ink:#14150F;--ink-2:#585A50;--rule:#C4C4BB;--rule-faint:#DADAD2;--blue:#4E5A0B;--blue-wash:#E7ECC2;}
-:root[data-palette="verdigris"]{--paper:#EFF0EE;--paper-2:#E3E5E2;--ink:#101414;--ink-2:#55605E;--rule:#C3C8C5;--rule-faint:#D9DDDA;--blue:#0A6459;--blue-wash:#D7ECE7;}
 
 *{box-sizing:border-box;}
 html{background:var(--paper);}
@@ -58,7 +54,7 @@ body{
   overflow-x:hidden;
 }
 a{color:inherit;}
-::selection{background:var(--blue);color:var(--paper);}
+::selection{background:var(--accent);color:var(--paper);}
 
 /* ---------- fixed column-rule overlay ---------- */
 .gridlines{
@@ -104,7 +100,7 @@ a{color:inherit;}
   letter-spacing:.02em;
   font-variant-numeric:tabular-nums;
 }
-.blue{color:var(--blue);}
+.accent{color:var(--accent);}
 
 /* ---------- masthead ---------- */
 .masthead{
@@ -137,8 +133,8 @@ a{color:inherit;}
   padding-bottom:2px;
   transition:color .18s ease,border-color .18s ease;
 }
-.mastnav a:hover,.mastnav a:focus-visible{color:var(--blue);border-bottom-color:var(--blue);}
-.mastnav a:focus-visible{outline:none;}
+.mastnav a:hover,.mastnav a:focus-visible{color:var(--accent);border-bottom-color:var(--accent);}
+.mastnav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
 .mastnav .n{display:none;}
 @media (min-width:640px){.mastnav .n{display:inline;}}
 
@@ -200,8 +196,8 @@ h1 .line > i{display:block;font-style:normal;}
 
 /* ---------- drawing ---------- */
 .drawing{width:100%;height:auto;display:block;color:var(--ink);}
-.drawing .dim{stroke:var(--blue);}
-.drawing .dimtext{fill:var(--blue);font-family:var(--mono);font-size:9px;letter-spacing:.04em;}
+.drawing .dim{stroke:var(--accent);}
+.drawing .dimtext{fill:var(--accent);font-family:var(--mono);font-size:9px;letter-spacing:.04em;}
 .drawing .bodytext{fill:var(--ink);font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;}
 .drawing .subtext{fill:var(--ink-2);font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;}
 .drawing .body{stroke:var(--ink);fill:none;}
@@ -239,7 +235,7 @@ h1 .line > i{display:block;font-style:normal;}
   transition:background-color .2s ease;
 }
 .row:hover{background:var(--paper-2);}
-.row .idx{font-family:var(--mono);font-size:11.5px;color:var(--blue);padding-top:6px;font-variant-numeric:tabular-nums;}
+.row .idx{font-family:var(--mono);font-size:11.5px;color:var(--accent);padding-top:6px;font-variant-numeric:tabular-nums;}
 .row h3{
   font-family:var(--sans);
   font-weight:600;
@@ -274,20 +270,20 @@ h1 .line > i{display:block;font-style:normal;}
 .status::before{
   content:"";
   width:7px;height:7px;
-  background:var(--blue);
+  background:var(--accent);
   flex:none;
 }
 .status.hold::before{background:none;border:var(--hair) solid var(--ink-2);}
 .row a.ext{
   font-family:var(--mono);
   font-size:11px;
-  color:var(--blue);
+  color:var(--accent);
   text-decoration:none;
-  border-bottom:var(--hair) solid var(--blue);
+  border-bottom:var(--hair) solid var(--accent);
   display:inline-block;
   margin-top:9px;
 }
-.row a.ext:hover{background:var(--blue-wash);}
+.row a.ext:hover{background:var(--wash);}
 
 /* ---------- work screenshots ---------- */
 .shot{margin:18px 0 0;max-width:600px;}
@@ -297,7 +293,7 @@ h1 .line > i{display:block;font-style:normal;}
   margin-top:8px;padding-top:7px;border-top:var(--hair) solid var(--rule);
   font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-2);
 }
-.shot figcaption .note{color:var(--blue);}
+.shot figcaption .note{color:var(--accent);}
 
 
 /* ---------- practice ---------- */
@@ -384,9 +380,9 @@ h2.big{
   transition:color .18s ease,padding-left .18s ease;
 }
 .links a span{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase;}
-.links a:hover,.links a:focus-visible{color:var(--blue);padding-left:10px;}
-.links a:hover span,.links a:focus-visible span{color:var(--blue);}
-.links a:focus-visible{outline:none;background:var(--blue-wash);}
+.links a:hover,.links a:focus-visible{color:var(--accent);padding-left:10px;}
+.links a:hover span,.links a:focus-visible span{color:var(--accent);}
+.links a:focus-visible{outline:2px solid var(--ink);outline-offset:-2px;background:var(--wash);}
 
 .colophon{
   display:flex;
@@ -404,7 +400,7 @@ h2.big{
   align-items:center;
   gap:10px;
   margin-top:26px;
-  color:var(--blue);
+  color:var(--accent);
 }
 .dimrule .tick{width:var(--hair);height:9px;background:currentColor;flex:none;}
 .dimrule .len{flex:1;height:var(--hair);background:currentColor;transform-origin:left center;}
@@ -629,17 +625,17 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
     </div>
     <div class="cards">
       <div class="card reveal">
-        <div class="label blue">Method</div>
+        <div class="label accent">Method</div>
         <h4>Build the unhappy path first</h4>
         <p>Loading, empty, offline, expired session, half-filled form. Most of a real product is these states, so I build them before the demo path — the version that only works when everything goes right isn't finished.</p>
       </div>
       <div class="card reveal">
-        <div class="label blue">Standard</div>
+        <div class="label accent">Standard</div>
         <h4>Used, not demoed</h4>
         <p>The measure of internal software is whether someone reaches for it on a busy Tuesday. Fast pages, forgiving inputs, and no required field that exists only to satisfy the database.</p>
       </div>
       <div class="card reveal">
-        <div class="label blue">Scope</div>
+        <div class="label accent">Scope</div>
         <h4>Schema through typography</h4>
         <p>Owning both ends means the data model and the interface get to agree with each other instead of negotiating across a handoff — and the fix lands wherever the problem actually is.</p>
       </div>
@@ -720,80 +716,6 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
     });
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
   items.forEach(function(el, i){ el.style.transitionDelay = (i % 4) * 60 + 'ms'; io.observe(el); });
-})();
-</script>
-
-<style>
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
-.titleblock{
-  position:fixed;
-  right:clamp(12px,2vw,22px);
-  bottom:clamp(12px,2vw,22px);
-  z-index:20;
-  background:var(--paper);
-  border:1px solid var(--ink);
-  padding:9px 11px 10px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  box-shadow:0 1px 0 var(--rule);
-}
-.tb-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;}
-.tb-head .label{font-size:9.5px;letter-spacing:.18em;color:var(--ink);}
-.tb-head .mono{font-size:9.5px;color:var(--ink-2);}
-.tb-swatches{display:flex;gap:6px;}
-.sw{
-  width:30px;height:30px;padding:0;cursor:pointer;
-  background:var(--sp);
-  border:1px solid var(--rule);
-  position:relative;
-  transition:transform .15s ease;
-}
-.sw::after{content:"";position:absolute;left:0;right:0;bottom:0;height:9px;background:var(--sa);}
-.sw::before{content:"";position:absolute;left:5px;right:5px;top:7px;height:1px;background:var(--si);opacity:.85;}
-.sw:hover{transform:translateY(-2px);}
-.sw[aria-pressed="true"]{outline:1px solid var(--ink);outline-offset:2px;}
-.sw:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
-.tb-name{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--ink-2);white-space:nowrap;}
-.tb-name b{color:var(--ink);font-weight:500;}
-@media (max-width:520px){.titleblock{left:clamp(12px,2vw,22px);right:clamp(12px,2vw,22px);}.tb-swatches{justify-content:space-between;}}
-@media (prefers-reduced-motion:reduce){.sw:hover{transform:none;}}
-.sw[data-p="blueprint"]{--sp:#F2F2ED;--sa:#1330C4;--si:#15171B;}
-.sw[data-p="achromatic"]{--sp:#FBFBF9;--sa:#0C0D0F;--si:#0C0D0F;}
-.sw[data-p="signal"]{--sp:#EDEDE8;--sa:#C4261B;--si:#17171A;}
-.sw[data-p="sulfur"]{--sp:#E9E9E4;--sa:#4E5A0B;--si:#14150F;}
-.sw[data-p="verdigris"]{--sp:#EFF0EE;--sa:#0A6459;--si:#101414;}
-
-</style>
-
-<aside class="titleblock" aria-label="Palette study">
-  <div class="tb-head">
-    <span class="label">Palette</span>
-    <span class="mono">STUDY · 05</span>
-  </div>
-  <div class="tb-swatches" role="group" aria-label="Choose a palette"><button class="sw" type="button" data-p="blueprint" aria-pressed="false" title="Blueprint — Ultramarine ink"><span class="vh">Blueprint</span></button><button class="sw" type="button" data-p="achromatic" aria-pressed="false" title="Achromatic — No hue at all"><span class="vh">Achromatic</span></button><button class="sw" type="button" data-p="signal" aria-pressed="false" title="Signal — Swiss red on bone"><span class="vh">Signal</span></button><button class="sw" type="button" data-p="sulfur" aria-pressed="false" title="Sulfur — Olive to acid yellow"><span class="vh">Sulfur</span></button><button class="sw" type="button" data-p="verdigris" aria-pressed="false" title="Verdigris — Oxidised copper"><span class="vh">Verdigris</span></button></div>
-  <div class="tb-name" id="pal-name"></div>
-</aside>
-
-<script>
-(function(){
-  var root = document.documentElement;
-  var meta = {blueprint:["A","BLUEPRINT","ULTRAMARINE INK"],achromatic:["B","ACHROMATIC","NO HUE AT ALL"],signal:["C","SIGNAL","SWISS RED ON BONE"],sulfur:["D","SULFUR","OLIVE TO ACID YELLOW"],verdigris:["E","VERDIGRIS","OXIDISED COPPER"]};
-  var caption = document.getElementById('pal-name');
-  var btns = Array.prototype.slice.call(document.querySelectorAll('.sw'));
-  var KEY = 'ak-palette';
-  var current = 'blueprint';
-  try { var saved = localStorage.getItem(KEY); if (saved && meta[saved]) current = saved; } catch (e) {}
-
-  function apply(name, persist){
-    root.setAttribute('data-palette', name);
-    btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.p === name)); });
-    var m = meta[name];
-    caption.innerHTML = m[0] + ' &nbsp;<b>' + m[1] + '</b> &nbsp;· ' + m[2];
-    if (persist) { try { localStorage.setItem(KEY, name); } catch (e) {} }
-  }
-  btns.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.p, true); }); });
-  apply(current, false);
 })();
 </script>
 
