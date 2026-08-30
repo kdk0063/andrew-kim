@@ -417,12 +417,16 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
 @keyframes rise{to{transform:translateY(0);}}
 .dimrule .len{animation:draw 1s .5s cubic-bezier(.2,.8,.2,1) both;}
 @keyframes draw{from{transform:scaleX(0);}to{transform:scaleX(1);}}
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1);}
-.reveal.in{opacity:1;transform:none;}
+/* Visible by default: if the observer never fires (hidden tab at load,
+   prerender, a browser without IO) the content must still be readable.
+   Only .js-reveal, set by script, opts into the hidden start state. */
+.reveal{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1);}
+:root.js-reveal .reveal{opacity:0;transform:translateY(14px);}
+:root.js-reveal .reveal.in{opacity:1;transform:none;}
 @media (prefers-reduced-motion:reduce){
   h1 .line > i{transform:none;animation:none;}
   .dimrule .len{animation:none;}
-  .reveal{opacity:1;transform:none;transition:none;}
+  .reveal,:root.js-reveal .reveal{opacity:1;transform:none;transition:none;}
 }
 </style>
 
@@ -703,11 +707,13 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var items = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    items.forEach(function(el){ el.classList.add('in'); });
-    return;
-  }
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  // Nothing to opt into: the CSS already leaves these visible.
+  if (reduce || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js-reveal');
+  var revealAll = function(){ items.forEach(function(el){ el.classList.add('in'); }); };
+  // Fail open. A callback that never arrives must not cost the reader the page.
+  setTimeout(revealAll, 2000);
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
