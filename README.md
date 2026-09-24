@@ -7,3 +7,6 @@ JPEG data URIs.
 Deployed with GitHub Pages from `main` at the repository root.
 
 The admin screenshot (FIG. 02) is rendered from fixtures, not live data.
+
+`work/allenskb/` is the allenskb.com case study: its own static page, with
+screenshots of the live site as plain JPEG files next to it.
