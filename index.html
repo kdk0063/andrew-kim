@@ -56,25 +56,6 @@ body{
 a{color:inherit;}
 ::selection{background:var(--accent);color:var(--paper);}
 
-/* ---------- fixed column-rule overlay ---------- */
-.gridlines{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  display:none;
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:0 var(--pad);
-}
-.gridlines .cols{
-  height:100%;
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-}
-.gridlines .cols span{border-left:var(--hair) solid var(--rule-faint);}
-.gridlines .cols span:last-child{border-right:var(--hair) solid var(--rule-faint);}
-@media (min-width:900px){.gridlines{display:block;}}
 
 .shell{
   position:relative;
@@ -438,10 +419,6 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
 }
 </style>
 
-<div class="gridlines" aria-hidden="true">
-  <div class="cols"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-</div>
-
 <header class="masthead">
   <div class="shell">
     <div class="wordmark">Andrew&nbsp;Kim</div>
@@ -777,7 +754,7 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
     <div class="colophon">
       <span class="mono" style="color:var(--ink-2)">© 2026 ANDREW KIM</span>
       <span class="mono" style="color:var(--ink-2)">SET IN ARCHIVO, SOURCE SERIF 4 &amp; IBM PLEX MONO</span>
-      <span class="mono" style="color:var(--ink-2)">12-COLUMN GRID · HAND-BUILT</span>
+      <span class="mono" style="color:var(--ink-2)">HAND-BUILT, NO FRAMEWORK</span>
     </div>
   </div>
 </section>
