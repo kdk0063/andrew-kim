@@ -289,6 +289,12 @@ h1 .line > i{display:block;font-style:normal;}
 .row h3 a.case::after{content:" →";font-weight:400;}
 .row h3 a.case:hover,.row h3 a.case:focus-visible{border-bottom-color:var(--ink);}
 .shot a{display:block;}
+.row h3 .org{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.06em;color:var(--ink-2);vertical-align:middle;margin-left:8px;}
+/* Below the 5-column breakpoint, role / stack / status stack under the
+   project text instead of falling into the 34px number column. */
+@media (max-width:859px){.row > :nth-child(n+3){grid-column:2;}}
+@media (max-width:639px){.mastnav{gap:16px;}.mastnav .opt{display:none;}}
+.shot.logo{max-width:280px;}
 .shot a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
 
 /* ---------- work screenshots ---------- */
@@ -441,9 +447,10 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
     <div class="wordmark">Andrew&nbsp;Kim</div>
     <nav class="mastnav label" aria-label="Sections">
       <a href="#work"><span class="n">§02&nbsp;</span>Work</a>
-      <a href="#practice"><span class="n">§03&nbsp;</span>Practice</a>
-      <a href="#stack"><span class="n">§04&nbsp;</span>Stack</a>
-      <a href="#contact"><span class="n">§05&nbsp;</span>Contact</a>
+      <a href="#earlier"><span class="n">§03&nbsp;</span>Earlier</a>
+      <a class="opt" href="#practice"><span class="n">§04&nbsp;</span>Practice</a>
+      <a class="opt" href="#stack"><span class="n">§05&nbsp;</span>Stack</a>
+      <a href="#contact"><span class="n">§06&nbsp;</span>Contact</a>
     </nav>
   </div>
 </header>
@@ -613,8 +620,13 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
     <article class="row reveal">
       <div class="idx">04</div>
       <div>
-        <h3>Grandstand</h3>
+        <h3><a class="case" href="work/grandstand/">Grandstand</a></h3>
         <p>Real-time 3D in the browser — custom geometry, staged lighting and post-processing over React Three Fiber, with scene state in Zustand. Where I work out how far the platform goes before a web page stops feeling like one.</p>
+        <a class="ext" href="work/grandstand/">Case study: coming soon →</a>
+        <figure class="shot">
+          <a href="work/grandstand/" aria-label="Grandstand case study, coming soon"><img src="work/grandstand/track.jpg" alt="Grandstand: an overhead 3D view of a race circuit on a green terrain block, with grandstands, a pit building and trees." width="1200" height="750" loading="lazy"></a>
+          <figcaption><span>FIG. 04 — CIRCUIT</span><span class="note">WORK IN PROGRESS</span></figcaption>
+        </figure>
       </div>
       <div class="cell"><p>Personal R&amp;D</p></div>
       <div class="cell stack"><span>Three.js</span><span>R3F</span><span>WebGL</span><span>Zustand</span></div>
@@ -623,10 +635,74 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
   </div>
 </section>
 
-<section class="sec practice" id="practice">
+<section class="sec work" id="earlier">
   <div class="shell">
     <div class="sechead">
       <span class="label">§03</span>
+      <span class="label" style="color:var(--ink)">Earlier Work</span>
+      <span class="bar"></span>
+      <span class="mono" style="color:var(--ink-2)">2017 – 2024</span>
+    </div>
+
+    <div class="rowhead label" role="presentation">
+      <span>No.</span><span>Project</span><span>Role</span><span>Built with</span><span>Years</span>
+    </div>
+
+    <article class="row reveal">
+      <div class="idx">05</div>
+      <div>
+        <h3><a class="case" href="work/beon-carrier/">Beon Carrier</a> <span class="org">NTG</span></h3>
+        <p>NTG's free load board for trucking carriers. Carriers find loads by lane, see the rate and route on one screen, then book right away or place up to three bids. After the haul they upload paperwork and get paid in one or two days. Used by a network of over 850,000 drivers.</p>
+        <a class="ext" href="work/beon-carrier/">Case study: product, screens, role →</a>
+        <a class="ext" href="https://ntgfreight.com/technology/beon-carrier/" target="_blank" rel="noopener noreferrer">ntgfreight.com ↗</a>
+        <figure class="shot">
+          <a href="work/beon-carrier/" aria-label="Beon Carrier case study"><img src="work/beon-carrier/web-bids.jpg" alt="Beon Carrier Bids page: approved, under-review and rejected bids, each with route, Beon rate, the carrier's bid and a Book button." width="1400" height="857" loading="lazy"></a>
+          <figcaption><span>FIG. 05 — BIDS</span><span class="note">LIVE PRODUCT</span></figcaption>
+        </figure>
+      </div>
+      <div class="cell"><p>Full-stack developer</p></div>
+      <div class="cell stack"><span>React</span><span>.NET&nbsp;Core</span><span>SQL&nbsp;Server</span><span>NHibernate</span></div>
+      <div class="status hold">2019–2024</div>
+    </article>
+
+    <article class="row reveal">
+      <div class="idx">06</div>
+      <div>
+        <h3>Kidian</h3>
+        <p>A marketplace for children's parties — OpenTable, but for birthdays. Parents browse and compare venues and vendors with photos, video and reviews, then book and add extras like cake and decorations in one place. The booking flow was benchmarked against hotel and restaurant reservation apps, the add-ons against e-commerce carts.</p>
+        <a class="ext" href="https://www.youtube.com/watch?v=9ksmDke-DOw" target="_blank" rel="noopener noreferrer">Product video ↗</a>
+        <figure class="shot">
+          <img src="work/earlier/kidian.jpg" alt="Kidian on a phone: a search bar reading 'Atlanta, Anytime' above a vendor card for Little Bakers, a baking party." width="659" height="457" loading="lazy">
+          <figcaption><span>FIG. 06 — VENDOR BROWSE</span><span>MOBILE</span></figcaption>
+        </figure>
+      </div>
+      <div class="cell"><p>Front-end developer, contract</p></div>
+      <div class="cell stack"><span>React</span><span>Context&nbsp;API</span><span>Figma</span></div>
+      <div class="status hold">2018–2019</div>
+    </article>
+
+    <article class="row reveal">
+      <div class="idx">07</div>
+      <div>
+        <h3>Babel Dabble</h3>
+        <p>A real-time, global competitive calligraphy platform that turns Chinese literacy into a game. Practice mode builds the word associations that help characters stick; live competition supplies the motivation. I worked across the stack, from wireframes with the product owner to stored procedures in SQL Server.</p>
+        <a class="ext" href="https://www.youtube.com/watch?v=U9hCPYpjdY0" target="_blank" rel="noopener noreferrer">Product video ↗</a>
+        <figure class="shot logo">
+          <img src="work/earlier/babel-dabble.jpg" alt="The Babel Dabble logo: two facing profiles forming a speech bubble, above the name." width="672" height="616" loading="lazy">
+          <figcaption><span>FIG. 07 — IDENTITY</span><span></span></figcaption>
+        </figure>
+      </div>
+      <div class="cell"><p>Junior full-stack developer, contract</p></div>
+      <div class="cell stack"><span>React</span><span>AngularJS</span><span>ASP.NET&nbsp;Web&nbsp;API</span><span>SQL&nbsp;Server</span></div>
+      <div class="status hold">2017–2018</div>
+    </article>
+  </div>
+</section>
+
+<section class="sec practice" id="practice">
+  <div class="shell">
+    <div class="sechead">
+      <span class="label">§04</span>
       <span class="label" style="color:var(--ink)">Practice</span>
       <span class="bar"></span>
     </div>
@@ -653,7 +729,7 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
 <section class="sec caps" id="stack">
   <div class="shell">
     <div class="sechead">
-      <span class="label">§04</span>
+      <span class="label">§05</span>
       <span class="label" style="color:var(--ink)">Stack</span>
       <span class="bar"></span>
     </div>
@@ -681,7 +757,7 @@ h1 .line:nth-child(3) > i{animation-delay:.16s;}
 <section class="sec contact" id="contact">
   <div class="shell">
     <div class="sechead">
-      <span class="label">§05</span>
+      <span class="label">§06</span>
       <span class="label" style="color:var(--ink)">Contact</span>
       <span class="bar"></span>
     </div>
